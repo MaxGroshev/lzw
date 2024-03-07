@@ -13,8 +13,14 @@ int main(int argc, char** argv) {
         int encoder_init_size = 256;
         int decoder_init_size = 0;
         lzw_t encoder {set_up, encoder_init_size, decoder_init_size};
-        std::vector<int> res = encoder.compress();
-        std::cout << encoder.get_compress_dict_size()   << "\n";
+
+        if (encoder.is_train_mode()) {
+            encoder.train();
+        }
+        else {
+            std::vector<int> res = encoder.compress();
+            std::cout << encoder.get_compress_dict_size() << "\n";
+        }
         // std::vector<int> res1 = encoder.compress();
     } catch(std::runtime_error& err) {
         std::cout << "ERROR: " << err.what() << '\n';
