@@ -1,0 +1,24 @@
+
+//-----------------------------------------------------------------------------------------
+
+void compressor_t::write_res_in_bin(std::vector<int> res, const char* path) const {
+    std::ofstream out(path, std::ios::binary);
+
+    for (const auto& elem : res)
+        out.write((char*)&elem, sizeof(int));
+    out.close();
+}
+
+std::string compressor_t::get_data(const char* path) const {
+    std::string data;
+    std::ifstream data_file;
+    data_file.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+    data_file.open(path);
+    std::stringstream data_stream;
+    data_stream << data_file.rdbuf();
+    data_file.close();
+    data = data_stream.str();
+    return data;
+}
+
+}
