@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/unlzw.dir/decode.cpp.o -o ../unlzw  ../debug_utils/libdebug_utils.a /usr/lib/libboost_program_options.so.1.83.0 

@@ -25,6 +25,18 @@ def print_test_data(args, test_data):
     dat_file.write(")")
     dat_file.close()
 
+def split_file(args):
+    filename = args.source
+    with open(filename) as fin:
+        fout = open(args.destination_dir + "/0.samp", "w")
+        for i, line in enumerate(fin):
+            fout.write(line)
+            if (i + 1) % args.n_of_lines_on_file == 0:
+                fout.close()
+                fout = open(args.destination_dir + "/%d.samp"% (i / args.n_of_lines_on_file + 1),"w")
+
+        fout.close()
+
 
 def generate_test_data(args):
     test_data = []
@@ -37,10 +49,11 @@ def generate_test_data(args):
 # -----------------------------------------------------------------------------------------
 
 def add_parse_arguments(parser):
-    parser.add_argument("-c",  "--count",         type = int, default = 2048)
-    parser.add_argument('-d',  "--diaposon",      nargs = 2, type = int, default = [-10000, 10000])
-    parser.add_argument('-f',  '--file',          type = str, default =
-                    os.path.dirname(os.path.abspath(__file__)) + '/my_test_dat/gen_test.dat')
+    parser.add_argument("-nl",  "--n_of_lines_on_file", type = int, default = 500)
+    parser.add_argument('-src',  "--source", type = str, default =
+                    os.path.dirname(os.path.abspath(__file__)) + '/big_samples/big_lit.samp')
+    parser.add_argument('-dest',  '--destination_dir',          type = str, default =
+                    os.path.dirname(os.path.abspath(__file__)) + '/tmp_samples/')
 
 # -----------------------------------------------------------------------------------------
 
@@ -48,7 +61,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     add_parse_arguments(parser)
     args = parser.parse_args()
-    # check_args(args)
 
-    test_data = generate_test_data(args)
-    print_test_data(args, test_data)
+    split_file(args)
+    # test_data = generate_test_data(args)
+    # print_test_data(args, test_data)

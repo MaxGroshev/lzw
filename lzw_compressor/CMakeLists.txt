@@ -37,5 +37,5 @@ target_include_directories(${encode_project} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/
 # add_executable(${decode_project} decode.cpp)
 # target_compile_features(${decode_project} PUBLIC cxx_std_20 )
 # target_link_libraries(${decode_project} ${SRC_LIST})
-# target_link_libraries(${decode_project} debug_utils)
+# target_link_libraries(${decode_project} debug_utils Boost::program_options)
 # target_include_directories(${decode_project} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)

@@ -56,8 +56,9 @@ class set_up_t {
 
             args_ = std::move(args);
         }
-        bool is_train_mode() const {return train_mode;}
-        const std::string& get_src_dir()  const {return args_["src"].as<std::string>();};
+        bool is_train_mode(std::vector<int> res) const {return train_mode;}
+        void write_dictionary_to_file()    const;
+        const std::string& get_src_dir()   const {return args_["src"].as<std::string>();};
         const std::string& get_train_dir() const {
             if (train_mode) {
                 return args_["train"].as<std::string>();
@@ -124,17 +125,23 @@ class lzw_t final {
             std::cout << "Here\n";
 
             for (const auto& sample : samples) {
-                std::cout << sample << " : " << get_compress_dict_size() << std::endl   ;
+                std::cout << get_compress_dict_size() << std::endl;
                 std::vector<int> res = compressor.compress(compressor.get_data(sample.c_str()));
             }
+            write_dictionary_to_file(res);
             // return decompressor.decompress(input_dat);
         };
 
+        void write_dictionary_to_file(std::vector<int>& res) {
+            std::string write_dir =  config_.get_dest_dir() + ".dict"; //bad
+            compressor.write_res_in_bin(res, write_dir.c_str());
+        }
+
 //GETTERS----------------------------------------------------------------------------------
 
-        size_t get_compress_dict_size()      const {return compressor.get_dict_size();};
-        size_t get_decompress_dict_size()    const {return decompressor.get_dict_size();};
-        bool   is_train_mode()               const {return config_.is_train_mode();};
+        size_t get_compress_dict_size()     const {return compressor.get_dict_size();};
+        size_t get_decompress_dict_size()   const {return decompressor.get_dict_size();};
+        bool   is_train_mode()              const {return config_.is_train_mode();};
         std::string get_data_for_compress() const {
             return compressor.get_data(config_.get_src_dir().c_str()); //TODO: make func ret const char*
         };
