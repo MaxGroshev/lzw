@@ -66,7 +66,6 @@ void decompressor_t::write_res(std::string res, const char* path) const {
     out.close();
 }
 
-
 std::vector<int> decompressor_t::get_data_from_bin(const char* path) const {
 
     std::ifstream data_file(path, std::ios::binary);

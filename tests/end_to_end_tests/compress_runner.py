@@ -6,9 +6,6 @@ from   subprocess import Popen, PIPE, STDOUT
 
 # -----------------------------------------------------------------------------------------
 
-path2dir = os.path.dirname(os.path.abspath(__file__))
-path2dir_len = len(path2dir)
-
 def get_files_names(files_names, dir_path):
     print (dir_path)
     data_files_counter = 0
@@ -26,7 +23,7 @@ def run_compressor(args, compressors, data_files_names):
     print('————————————————————————START OF COMPRESSION———————————————————————')
 
 
-    for (compressor) in range(0, 2):
+    for (compressor) in range(0, len(compressors)):
         extention = ""
         if (compressors[compressor] == "zstd"):
             extention = ".zstd"
@@ -34,8 +31,8 @@ def run_compressor(args, compressors, data_files_names):
         if (args.count_of_files == 1):
             source = args.source_dir + args.relative_path
             dest   = args.destination_dir + args.relative_path + extention
-            print (source)
-            print (dest)
+            # print (source)
+            # print (dest)
             pipe = Popen([compressors[compressor], "-f", "-k", source, "-o" , dest], stdout = PIPE)
 
             stdout_data = pipe.communicate()
@@ -45,8 +42,7 @@ def run_compressor(args, compressors, data_files_names):
         else:
             for (i, file) in zip(range(args.count_of_files), data_files_names):
 
-                dest = args.destination_dir + args.relative_path +  extention
-                print (file)
+                dest = file.replace(args.source_dir, args.destination_dir) + extention
                 pipe = Popen([compressors[compressor], "-f", file,
                           "-o" +  dest], stdout = PIPE)
 
