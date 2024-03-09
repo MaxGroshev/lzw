@@ -17,10 +17,10 @@ int main(int argc, char** argv) {
         if (encoder.is_train_mode()) {
             encoder.train();
         }
-        else {
+        // else {
             std::vector<int> res = encoder.compress();
             std::cout << encoder.get_compress_dict_size() << "\n";
-        }
+        // }
         // std::vector<int> res1 = encoder.compress();
     } catch(std::runtime_error& err) {
         std::cout << "ERROR: " << err.what() << '\n';

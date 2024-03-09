@@ -1,6 +1,7 @@
 /home/max/vladoc/lzw/build/CMakeFiles/edit_cache.dir
 /home/max/vladoc/lzw/build/CMakeFiles/rebuild_cache.dir
 /home/max/vladoc/lzw/build/lzw_compressor/CMakeFiles/lzw.dir
+/home/max/vladoc/lzw/build/lzw_compressor/CMakeFiles/unlzw.dir
 /home/max/vladoc/lzw/build/lzw_compressor/CMakeFiles/edit_cache.dir
 /home/max/vladoc/lzw/build/lzw_compressor/CMakeFiles/rebuild_cache.dir
 /home/max/vladoc/lzw/build/lzw_compressor/src/CMakeFiles/src.dir

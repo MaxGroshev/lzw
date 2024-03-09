@@ -4,6 +4,7 @@
 lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: /home/max/vladoc/lzw/lzw_compressor/encode.cpp \
   /home/max/vladoc/lzw/debug_utils/time_control/time_control.hpp \
   /home/max/vladoc/lzw/lzw_compressor/include/compressor.hpp \
+  /home/max/vladoc/lzw/lzw_compressor/include/config.hpp \
   /home/max/vladoc/lzw/lzw_compressor/include/decompressor.hpp \
   /home/max/vladoc/lzw/lzw_compressor/include/lzw.hpp \
   /home/max/vladoc/lzw/lzw_compressor/include/utils.hpp \
@@ -1186,8 +1187,6 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: /home/max/vladoc/lzw/lzw_compres
 
 /usr/include/boost/version.hpp:
 
-/usr/include/boost/utility/binary.hpp:
-
 /usr/include/c++/13.2.1/pstl/glue_algorithm_defs.h:
 
 /usr/include/boost/utility/base_from_member.hpp:
@@ -1322,6 +1321,8 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: /home/max/vladoc/lzw/lzw_compres
 
 /usr/include/boost/type_traits/add_const.hpp:
 
+/usr/include/boost/type_index/type_index_facade.hpp:
+
 /usr/include/boost/mpl/aux_/config/msvc_typename.hpp:
 
 /usr/include/boost/mpl/aux_/config/preprocessor.hpp:
@@ -1414,11 +1415,11 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: /home/max/vladoc/lzw/lzw_compres
 
 /usr/include/boost/iterator/detail/config_undef.hpp:
 
-/usr/include/assert.h:
-
 /usr/include/boost/type_traits/is_volatile.hpp:
 
 /usr/include/boost/integer_fwd.hpp:
+
+/usr/include/assert.h:
 
 /usr/include/c++/13.2.1/initializer_list:
 
@@ -1469,8 +1470,6 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: /home/max/vladoc/lzw/lzw_compres
 /usr/include/boost/function/detail/prologue.hpp:
 
 /usr/include/boost/function/detail/epilogue.hpp:
-
-/usr/include/boost/detail/workaround.hpp:
 
 /usr/include/bits/timex.h:
 
@@ -1556,9 +1555,7 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: /home/max/vladoc/lzw/lzw_compres
 
 /usr/include/boost/concept/detail/has_constraints.hpp:
 
-/usr/include/bits/types/clockid_t.h:
-
-/usr/include/boost/config/helper_macros.hpp:
+/usr/include/boost/concept/detail/general.hpp:
 
 /usr/include/c++/13.2.1/bits/localefwd.h:
 
@@ -1587,6 +1584,8 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: /home/max/vladoc/lzw/lzw_compres
 /usr/include/boost/assert.hpp:
 
 /usr/include/boost/preprocessor/arithmetic/sub.hpp:
+
+/usr/include/boost/config/helper_macros.hpp:
 
 /usr/include/c++/13.2.1/tr1/poly_laguerre.tcc:
 
@@ -1678,22 +1677,6 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: /home/max/vladoc/lzw/lzw_compres
 
 /usr/include/bits/floatn-common.h:
 
-/usr/include/boost/core/snprintf.hpp:
-
-/usr/include/boost/preprocessor/arithmetic/limits/dec_256.hpp:
-
-/usr/include/c++/13.2.1/variant:
-
-/usr/include/bits/uio_lim.h:
-
-/usr/include/bits/math-vector.h:
-
-/usr/include/asm-generic/types.h:
-
-/usr/include/asm-generic/bitsperlong.h:
-
-/usr/include/asm-generic/errno-base.h:
-
 /usr/include/bits/types/time_t.h:
 
 /usr/include/boost/numeric/conversion/sign_mixture_enum.hpp:
@@ -1736,12 +1719,6 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: /home/max/vladoc/lzw/lzw_compres
 
 /home/max/vladoc/lzw/lzw_compressor/include/decompressor.hpp:
 
-/usr/include/asm/bitsperlong.h:
-
-/usr/include/boost/mpl/aux_/config/ttp.hpp:
-
-/usr/include/boost/smart_ptr/detail/sp_has_gcc_intrinsics.hpp:
-
 /usr/include/linux/stddef.h:
 
 /usr/include/c++/13.2.1/clocale:
@@ -1761,6 +1738,56 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: /home/max/vladoc/lzw/lzw_compres
 /usr/include/boost/iterator/iterator_concepts.hpp:
 
 /usr/include/bits/waitflags.h:
+
+/usr/include/asm/bitsperlong.h:
+
+/usr/include/boost/mpl/aux_/config/ttp.hpp:
+
+/usr/include/boost/smart_ptr/detail/sp_has_gcc_intrinsics.hpp:
+
+/usr/include/boost/core/snprintf.hpp:
+
+/usr/include/boost/preprocessor/arithmetic/limits/dec_256.hpp:
+
+/usr/include/c++/13.2.1/variant:
+
+/usr/include/bits/uio_lim.h:
+
+/usr/include/bits/math-vector.h:
+
+/usr/include/asm-generic/errno-base.h:
+
+/usr/include/asm-generic/types.h:
+
+/usr/include/asm-generic/bitsperlong.h:
+
+/usr/include/boost/type_traits/is_reference.hpp:
+
+/usr/include/bits/locale.h:
+
+/usr/include/boost/config/detail/select_platform_config.hpp:
+
+/usr/include/boost/lexical_cast/detail/widest_char.hpp:
+
+/usr/include/boost/preprocessor/control/deduce_d.hpp:
+
+/usr/include/bits/syscall.h:
+
+/usr/include/boost/mpl/has_xxx.hpp:
+
+/usr/include/boost/lexical_cast/detail/lcast_unsigned_converters.hpp:
+
+/usr/include/boost/iterator/iterator_categories.hpp:
+
+/usr/include/bits/types/cookie_io_functions_t.h:
+
+/usr/include/boost/preprocessor/logical/not.hpp:
+
+/usr/include/bits/atomic_wide_counter.h:
+
+/usr/include/boost/core/detail/sp_thread_yield.hpp:
+
+/usr/include/bits/types/clockid_t.h:
 
 /usr/include/bits/posix2_lim.h:
 
@@ -1782,10 +1809,6 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: /home/max/vladoc/lzw/lzw_compres
 
 /usr/include/boost/preprocessor/logical/limits/bool_256.hpp:
 
-/usr/include/boost/core/detail/sp_thread_yield.hpp:
-
-/usr/include/bits/atomic_wide_counter.h:
-
 /usr/include/c++/13.2.1/bits/stl_uninitialized.h:
 
 /usr/include/boost/preprocessor/variadic/size.hpp:
@@ -1793,6 +1816,14 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: /home/max/vladoc/lzw/lzw_compres
 /usr/include/bits/byteswap.h:
 
 /usr/include/bits/mathcalls.h:
+
+/usr/include/boost/detail/workaround.hpp:
+
+/usr/include/boost/utility/binary.hpp:
+
+/home/max/vladoc/lzw/lzw_compressor/include/config.hpp:
+
+/usr/include/boost/preprocessor/seq/limits/elem_256.hpp:
 
 /usr/include/boost/preprocessor/tuple/rem.hpp:
 
@@ -1823,28 +1854,6 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: /home/max/vladoc/lzw/lzw_compres
 /usr/include/bits/libm-simd-decl-stubs.h:
 
 /usr/include/boost/mpl/bool.hpp:
-
-/usr/include/boost/type_traits/is_reference.hpp:
-
-/usr/include/bits/locale.h:
-
-/usr/include/boost/config/detail/select_platform_config.hpp:
-
-/usr/include/boost/lexical_cast/detail/widest_char.hpp:
-
-/usr/include/boost/preprocessor/control/deduce_d.hpp:
-
-/usr/include/bits/syscall.h:
-
-/usr/include/boost/mpl/has_xxx.hpp:
-
-/usr/include/boost/lexical_cast/detail/lcast_unsigned_converters.hpp:
-
-/usr/include/boost/iterator/iterator_categories.hpp:
-
-/usr/include/bits/types/cookie_io_functions_t.h:
-
-/usr/include/boost/preprocessor/logical/not.hpp:
 
 /usr/include/boost/mpl/aux_/config/compiler.hpp:
 
@@ -1895,8 +1904,6 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: /home/max/vladoc/lzw/lzw_compres
 /usr/include/boost/exception/exception.hpp:
 
 /usr/include/bits/stdlib-bsearch.h:
-
-/usr/include/boost/concept/detail/general.hpp:
 
 /usr/include/boost/iterator/distance.hpp:
 
@@ -2508,8 +2515,6 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: /home/max/vladoc/lzw/lzw_compres
 
 /usr/include/boost/preprocessor/seq/for_each_i.hpp:
 
-/usr/include/boost/preprocessor/seq/limits/elem_256.hpp:
-
 /usr/include/boost/preprocessor/seq/limits/fold_left_256.hpp:
 
 /usr/include/boost/function/function_fwd.hpp:
@@ -2631,5 +2636,3 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: /home/max/vladoc/lzw/lzw_compres
 /usr/include/boost/static_assert.hpp:
 
 /usr/include/boost/throw_exception.hpp:
-
-/usr/include/boost/type_index/type_index_facade.hpp:

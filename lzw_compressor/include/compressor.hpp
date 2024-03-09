@@ -1,6 +1,5 @@
 #pragma once
 
-#include "decompressor.hpp"
 #include <unordered_map>
 #include <string>
 
@@ -67,7 +66,7 @@ std::vector<int> compressor_t::compress(const std::string& input_dat) {
 void compressor_t::write_res_in_bin(std::vector<int> res, const char* path) const {
     std::ofstream out(path, std::ios::binary);
 
-    for (const auto& elem : res)
+    for (auto& elem : res)
         out.write((char*)&elem, sizeof(int));
     out.close();
 }
@@ -75,8 +74,12 @@ void compressor_t::write_res_in_bin(std::vector<int> res, const char* path) cons
 std::string compressor_t::get_data(const char* path) const {
     std::string data;
     std::ifstream data_file;
-    data_file.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+
     data_file.open(path);
+    if (!data_file.good()) {
+        throw std::runtime_error("Input file for compression does not exist\n");
+    }
+    data_file.exceptions(std::ifstream::failbit | std::ifstream::badbit);
     std::stringstream data_stream;
     data_stream << data_file.rdbuf();
     data_file.close();

@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/max/vladoc/lzw/debug_utils/../debug_utils -I/home/max/vladoc/lzw/debug_utils/./logs -I/home/max/vladoc/lzw/debug_utils/./time_control -I/home/max/vladoc/lzw/debug_utils/./error_control
 
-CXX_FLAGS = -O3 -DNDEBUG
+CXX_FLAGS = -fsanitize=address,leak -g
 

@@ -130,6 +130,19 @@ lzw/fast:
 .PHONY : lzw/fast
 
 #=============================================================================
+# Target rules for targets named unlzw
+
+# Build rule for target.
+unlzw: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 unlzw
+.PHONY : unlzw
+
+# fast build rule for target.
+unlzw/fast:
+	$(MAKE) $(MAKESILENT) -f lzw_compressor/CMakeFiles/unlzw.dir/build.make lzw_compressor/CMakeFiles/unlzw.dir/build
+.PHONY : unlzw/fast
+
+#=============================================================================
 # Target rules for targets named src
 
 # Build rule for target.
@@ -166,6 +179,7 @@ help:
 	@echo "... debug_utils"
 	@echo "... lzw"
 	@echo "... src"
+	@echo "... unlzw"
 .PHONY : help
 
 

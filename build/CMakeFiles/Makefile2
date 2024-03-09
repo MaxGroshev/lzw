@@ -97,6 +97,7 @@ debug_utils/clean: debug_utils/CMakeFiles/debug_utils.dir/clean
 
 # Recursive "all" directory target.
 lzw_compressor/all: lzw_compressor/CMakeFiles/lzw.dir/all
+lzw_compressor/all: lzw_compressor/CMakeFiles/unlzw.dir/all
 lzw_compressor/all: lzw_compressor/src/all
 .PHONY : lzw_compressor/all
 
@@ -106,6 +107,7 @@ lzw_compressor/preinstall: lzw_compressor/src/preinstall
 
 # Recursive "clean" directory target.
 lzw_compressor/clean: lzw_compressor/CMakeFiles/lzw.dir/clean
+lzw_compressor/clean: lzw_compressor/CMakeFiles/unlzw.dir/clean
 lzw_compressor/clean: lzw_compressor/src/clean
 .PHONY : lzw_compressor/clean
 
@@ -149,6 +151,32 @@ lzw: lzw_compressor/CMakeFiles/lzw.dir/rule
 lzw_compressor/CMakeFiles/lzw.dir/clean:
 	$(MAKE) $(MAKESILENT) -f lzw_compressor/CMakeFiles/lzw.dir/build.make lzw_compressor/CMakeFiles/lzw.dir/clean
 .PHONY : lzw_compressor/CMakeFiles/lzw.dir/clean
+
+#=============================================================================
+# Target rules for target lzw_compressor/CMakeFiles/unlzw.dir
+
+# All Build rule for target.
+lzw_compressor/CMakeFiles/unlzw.dir/all: debug_utils/CMakeFiles/debug_utils.dir/all
+	$(MAKE) $(MAKESILENT) -f lzw_compressor/CMakeFiles/unlzw.dir/build.make lzw_compressor/CMakeFiles/unlzw.dir/depend
+	$(MAKE) $(MAKESILENT) -f lzw_compressor/CMakeFiles/unlzw.dir/build.make lzw_compressor/CMakeFiles/unlzw.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/max/vladoc/lzw/build/CMakeFiles --progress-num=8,9 "Built target unlzw"
+.PHONY : lzw_compressor/CMakeFiles/unlzw.dir/all
+
+# Build rule for subdir invocation for target.
+lzw_compressor/CMakeFiles/unlzw.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/max/vladoc/lzw/build/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lzw_compressor/CMakeFiles/unlzw.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/max/vladoc/lzw/build/CMakeFiles 0
+.PHONY : lzw_compressor/CMakeFiles/unlzw.dir/rule
+
+# Convenience name for target.
+unlzw: lzw_compressor/CMakeFiles/unlzw.dir/rule
+.PHONY : unlzw
+
+# clean rule for target.
+lzw_compressor/CMakeFiles/unlzw.dir/clean:
+	$(MAKE) $(MAKESILENT) -f lzw_compressor/CMakeFiles/unlzw.dir/build.make lzw_compressor/CMakeFiles/unlzw.dir/clean
+.PHONY : lzw_compressor/CMakeFiles/unlzw.dir/clean
 
 #=============================================================================
 # Target rules for target lzw_compressor/src/CMakeFiles/src.dir

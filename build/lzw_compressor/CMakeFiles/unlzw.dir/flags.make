@@ -6,5 +6,5 @@ CXX_DEFINES = -DBOOST_PROGRAM_OPTIONS_DYN_LINK -DBOOST_PROGRAM_OPTIONS_NO_LIB
 
 CXX_INCLUDES = -I/home/max/vladoc/lzw/lzw_compressor/include -I/home/max/vladoc/lzw/debug_utils/../debug_utils -I/home/max/vladoc/lzw/debug_utils/./logs -I/home/max/vladoc/lzw/debug_utils/./time_control -I/home/max/vladoc/lzw/debug_utils/./error_control
 
-CXX_FLAGS = -O3 -DNDEBUG -std=gnu++20
+CXX_FLAGS = -fsanitize=address,leak -g -std=gnu++20
 

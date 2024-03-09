@@ -130,6 +130,44 @@ lzw/fast:
 	cd /home/max/vladoc/lzw/build && $(MAKE) $(MAKESILENT) -f lzw_compressor/CMakeFiles/lzw.dir/build.make lzw_compressor/CMakeFiles/lzw.dir/build
 .PHONY : lzw/fast
 
+# Convenience name for target.
+lzw_compressor/CMakeFiles/unlzw.dir/rule:
+	cd /home/max/vladoc/lzw/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lzw_compressor/CMakeFiles/unlzw.dir/rule
+.PHONY : lzw_compressor/CMakeFiles/unlzw.dir/rule
+
+# Convenience name for target.
+unlzw: lzw_compressor/CMakeFiles/unlzw.dir/rule
+.PHONY : unlzw
+
+# fast build rule for target.
+unlzw/fast:
+	cd /home/max/vladoc/lzw/build && $(MAKE) $(MAKESILENT) -f lzw_compressor/CMakeFiles/unlzw.dir/build.make lzw_compressor/CMakeFiles/unlzw.dir/build
+.PHONY : unlzw/fast
+
+decode.o: decode.cpp.o
+.PHONY : decode.o
+
+# target to build an object file
+decode.cpp.o:
+	cd /home/max/vladoc/lzw/build && $(MAKE) $(MAKESILENT) -f lzw_compressor/CMakeFiles/unlzw.dir/build.make lzw_compressor/CMakeFiles/unlzw.dir/decode.cpp.o
+.PHONY : decode.cpp.o
+
+decode.i: decode.cpp.i
+.PHONY : decode.i
+
+# target to preprocess a source file
+decode.cpp.i:
+	cd /home/max/vladoc/lzw/build && $(MAKE) $(MAKESILENT) -f lzw_compressor/CMakeFiles/unlzw.dir/build.make lzw_compressor/CMakeFiles/unlzw.dir/decode.cpp.i
+.PHONY : decode.cpp.i
+
+decode.s: decode.cpp.s
+.PHONY : decode.s
+
+# target to generate assembly for a file
+decode.cpp.s:
+	cd /home/max/vladoc/lzw/build && $(MAKE) $(MAKESILENT) -f lzw_compressor/CMakeFiles/unlzw.dir/build.make lzw_compressor/CMakeFiles/unlzw.dir/decode.cpp.s
+.PHONY : decode.cpp.s
+
 encode.o: encode.cpp.o
 .PHONY : encode.o
 
@@ -163,6 +201,10 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... lzw"
+	@echo "... unlzw"
+	@echo "... decode.o"
+	@echo "... decode.i"
+	@echo "... decode.s"
 	@echo "... encode.o"
 	@echo "... encode.i"
 	@echo "... encode.s"

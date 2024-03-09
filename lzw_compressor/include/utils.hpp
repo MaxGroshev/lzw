@@ -39,5 +39,11 @@ std::vector<std::string> get_file_name_from_dir(const char* dir_name) {
     // std::cout << "Here\n" << std::endl ;
 }
 
+size_t get_file_size (const char* path) {
+    struct stat file;
+    stat(path ,&file);
+    return file.st_size;
+}
+
 }
 

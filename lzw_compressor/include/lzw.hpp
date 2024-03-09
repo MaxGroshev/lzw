@@ -1,78 +1,9 @@
 #pragma once
 
-#include <fstream>
-#include <stdexcept>
-#include <vector>
-
-#include "utils.hpp"
 #include "time_control.hpp"
 #include "compressor.hpp"
 #include "decompressor.hpp"
-
-#include <boost/program_options.hpp>
-
-//-----------------------------------------------------------------------------------------
-
-class set_up_t {
-    private:
-        boost::program_options::variables_map args_;
-        bool train_mode = false; //better in set_up as it is responsible way of running
-
-        boost::program_options::options_description set_option_description() {
-            using namespace boost::program_options;
-            options_description desc{"Options"};
-            desc.add_options()
-            ("help,h", "help screen")
-            ("train",   value<std::string>(), "train that is based"
-            "on samples from mentioned dir")
-            ("src, s",  value<std::string>(), "source_dir")
-            ("dict, d", value<std::string>()->default_value("../samples"), "dictionray_dir")
-            ("OUTPUT,o",value<std::string>(), "dest_dir");
-
-            return desc;
-        }
-
-    public:
-        set_up_t() {};
-        set_up_t(const int argc, char** argv) {
-            using namespace boost::program_options;
-
-            options_description desc = set_option_description() ;
-
-            variables_map args;
-            store(parse_command_line(argc, argv, desc), args);
-            notify(args);
-
-            if (args.count("help")) //TODO: remove here just for debug
-                std::cout << desc << '\n';
-            if (!args.count("src"))
-                throw std::runtime_error("No source dir was mentioned\n");
-            if (args.count("train")) {
-                train_mode = true;
-                std::cout << "Train: " << args["train"].as<std::string>() << '\n';
-            }
-            if (args.count("dict"))
-                std::cout << "Dict: " << args["dict"].as<std::string>() << '\n';
-
-            args_ = std::move(args);
-        }
-        bool is_train_mode(std::vector<int> res) const {return train_mode;}
-        void write_dictionary_to_file()    const;
-        const std::string& get_src_dir()   const {return args_["src"].as<std::string>();};
-        const std::string& get_train_dir() const {
-            if (train_mode) {
-                return args_["train"].as<std::string>();
-            }
-            else
-                throw std::runtime_error("Request to train dir in train_mode=false\n");
-        };
-        const std::string& get_dest_dir() const {
-            if (args_.count("OUTPUT")) {
-                return args_["OUTPUT"].as<std::string>();
-            }
-            return args_["src"].as<std::string>();
-        };
-};
+#include "config.hpp"
 
 //-----------------------------------------------------------------------------------------
 
@@ -99,7 +30,7 @@ class lzw_t final {
         std::vector<int> compress() {
             std::vector<int> res = compressor.compress(get_data_for_compress());
             // utils::dump_vect(res);
-            std::string write_dir =  config_.get_dest_dir() + ".gif"; //bad
+            std::string write_dir =  config_.get_dest_dir() + ".lzw"; //bad
             compressor.write_res_in_bin(res, write_dir.c_str());
             return res;
         };
@@ -125,10 +56,11 @@ class lzw_t final {
             std::cout << "Here\n";
 
             for (const auto& sample : samples) {
+                std::cout << sample << '\n';
                 std::cout << get_compress_dict_size() << std::endl;
                 std::vector<int> res = compressor.compress(compressor.get_data(sample.c_str()));
             }
-            write_dictionary_to_file(res);
+            // write_dictionary_to_file(res);
             // return decompressor.decompress(input_dat);
         };
 

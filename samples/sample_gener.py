@@ -7,24 +7,6 @@ import sys
 
 # -----------------------------------------------------------------------------------------
 
-def print_test_data(args, test_data):
-    dat_file = open(args.file, "w")
-
-    dat_file.write("%d "%  args.count)
-    dat_file.write("\n")
-
-    for i in range (args.count):
-        dat_file.write("%d "% test_data[i])
-        if ((i % 10) == 0):
-            dat_file.write("\n")
-
-    test_data.sort()
-    dat_file.write("(")
-    for i in range (args.count):
-        dat_file.write("%d "% test_data[i])
-    dat_file.write(")")
-    dat_file.close()
-
 def split_file(args):
     filename = args.source
     with open(filename) as fin:
@@ -37,14 +19,6 @@ def split_file(args):
 
         fout.close()
 
-
-def generate_test_data(args):
-    test_data = []
-
-    for i in range(args.count):
-        test_data.append(random.randint(args.diaposon[0], args.diaposon[1]))
-
-    return test_data
 
 # -----------------------------------------------------------------------------------------
 
@@ -63,5 +37,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     split_file(args)
-    # test_data = generate_test_data(args)
-    # print_test_data(args, test_data)

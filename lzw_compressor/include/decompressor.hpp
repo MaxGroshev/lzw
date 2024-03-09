@@ -1,9 +1,8 @@
 #pragma once
 
-#include "compressor.hpp"
-#include "decompressor.hpp"
 #include <unordered_map>
 #include <string>
+#include "utils.hpp"
 
 //-----------------------------------------------------------------------------------------
 
@@ -71,15 +70,17 @@ void decompressor_t::write_res(std::string res, const char* path) const {
 std::vector<int> decompressor_t::get_data_from_bin(const char* path) const {
 
     std::ifstream data_file(path, std::ios::binary);
-    std::vector<int> data {};
-
-    int elem = {};
-    for (int i = 0; !data_file.eof(); i++) {
-        data_file.read((char*)&elem, sizeof(int));
-        data.push_back(elem);
+    if (!data_file.good()) {
+        throw std::runtime_error("Input file for decompression does not exist\n");
     }
+    //tight_moment with bit operations
+    size_t f_size = utils::get_file_size(path);
+    char* char_buf = new char[f_size];
+    data_file.read(char_buf, f_size);
+    std::vector<int> data (reinterpret_cast<int*>(char_buf),
+                           reinterpret_cast<int*>(char_buf) + f_size / sizeof(int));
+    delete [] char_buf;
     data_file.close();
-
     return data;
 }
 
