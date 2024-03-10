@@ -4,8 +4,6 @@ cmake_minimum_required(VERSION 3.21)
 
 project(my_lzw)
 
-
-
 #-----------------------------------------------------------------------------------------
 
 set(TESTING_ENABLED ON CACHE BOOL [FORCE])

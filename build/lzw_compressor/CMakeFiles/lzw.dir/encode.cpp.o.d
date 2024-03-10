@@ -756,4 +756,5 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: \
  /usr/include/boost/program_options/detail/parsers.hpp \
  /usr/include/boost/program_options/detail/convert.hpp \
  /usr/include/boost/program_options/variables_map.hpp \
- /usr/include/boost/program_options/version.hpp
+ /usr/include/boost/program_options/version.hpp \
+ /home/max/vladoc/lzw/lzw_compressor/include/dict_train.hpp

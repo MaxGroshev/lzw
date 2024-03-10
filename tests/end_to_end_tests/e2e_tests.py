@@ -123,7 +123,7 @@ def run_test_data(args):
     n_test      = 0
     failed = []
 
-    for (n_test, input_file) in zip(range(len(data_files_names)), data_files_names):
+    for (n_test, input_file) in zip(range(min(len(data_files_names), args.num_to_test)), data_files_names):
         print('————————————————————————START_OF_TEST———————————————————————')
 
         prog_res, correct_res = run_test(args, input_file)
@@ -137,8 +137,9 @@ def run_test_data(args):
 # -----------------------------------------------------------------------------------------
 
 def add_parse_arguments(parser):
-    # parser.add_argument("-c",  "--count_of_files",   type = int, default = 1)
-    parser.add_argument('-in',  "--input_dir",     type = str, default =
+    parser.add_argument("-n",  "--num_to_test", type = int, default = 1000)
+    # parser.add_argument("-n",  "--num_to_test", type = int, default = 1000)
+    parser.add_argument('-in',  "--input_dir",  type = str, default =
                     os.path.dirname(os.path.abspath(__file__)) + '/my_input_dat/')
     parser.add_argument('-com', '--compressed_dir',          type = str, default =
                     os.path.dirname(os.path.abspath(__file__)) + '/my_compress_dat/')

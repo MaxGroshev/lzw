@@ -54,14 +54,13 @@ std::string decompressor_t::decompress(const std::vector<int>& input_dat) {
         ++code;
         fst_elem_code = snd_elem_code;
     }
-    std::cout << output << "\n";
+    // std::cout << output << "\n";
     return output;
 }
 
 void decompressor_t::write_res(std::string res, const char* path) const {
     std::ofstream out(path, std::ios::binary);
 
-    // for (auto& elem : res)
     out.write(res.data(), res.size());
     out.close();
 }

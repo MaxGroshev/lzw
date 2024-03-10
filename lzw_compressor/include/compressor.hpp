@@ -20,11 +20,19 @@ class compressor_t final {
                 dictionary_[std::string{char(i)}] = i;
             }
         }
+
+        compressor_t(const char* path) {
+            std::vector<std::string> dict = get_dict(path);
+            for (int i = 0; i < dict.size(); ++i) {
+                dictionary_[dict[i]] = i;
+            }
+        }
         inline std::vector<int> compress(const std::string& input_dat);
         size_t get_dict_size() const {return dictionary_.size();};
         size_t get_init_size_of_dictionary() const {return init_size_of_dictionary_;};
 
         inline std::string get_data(const char* path) const;
+        inline std::vector<std::string> get_dict(const char* path) const;
         inline void write_res_in_bin(std::vector<int> res, const char* path) const;
 
 };
@@ -44,7 +52,6 @@ std::vector<int> compressor_t::compress(const std::string& input_dat) {
             snd_elem += input_dat[i + 1];
         concat = fst_elem + snd_elem;
         if (dictionary_.contains(concat) && input_dat[i + 1] != 0) {
-
             fst_elem = concat;
         }
         else {
@@ -69,20 +76,38 @@ void compressor_t::write_res_in_bin(std::vector<int> res, const char* path) cons
     out.close();
 }
 
-std::string compressor_t::get_data(const char* path) const {
-    std::ifstream data_file(path, std::ios::binary);
-    if (!data_file.good()) {
-        std::string msg = "Input file for compression does not exist\n";
+std::vector<std::string> compressor_t::get_dict(const char* path) const {
+
+    std::ifstream dict_file(path);
+    if (!dict_file.good()) {
+        std::string msg = "Dictionary file does not exist\n";
         throw std::runtime_error(msg + path);
     }
 
-    ssize_t f_size = utils::get_file_size(path);
-    char* char_buf = new char[f_size];
-    data_file.read(char_buf, f_size);
-    std::string data(char_buf, char_buf + f_size);
-    delete [] char_buf;
-    data_file.close();
+    std::vector<std::string> data;
+    std::string tmp_str = {}; //stream_iterator better
+    while (std::getline(dict_file, tmp_str)) {
+        data.push_back(std::move(tmp_str));
+    }
+    dict_file.close();
+
     return data;
 }
+
+// std::string compressor_t::get_data(const char* path) const {
+//     std::string data;
+//     std::ifstream data_file;
+//
+//     data_file.open(path);
+//     if (!data_file.good()) {
+//         throw std::runtime_error("Input file for compression does not exist\n");
+//     }
+//     data_file.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+//     std::stringstream data_stream;
+//     data_stream << data_file.rdbuf();
+//     data_file.close();
+//     data = data_stream.str();
+//     return data;
+// }
 
 }

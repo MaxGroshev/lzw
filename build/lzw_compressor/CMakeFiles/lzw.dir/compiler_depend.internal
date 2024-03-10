@@ -7,6 +7,7 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o
  /home/max/vladoc/lzw/lzw_compressor/include/compressor.hpp
  /home/max/vladoc/lzw/lzw_compressor/include/config.hpp
  /home/max/vladoc/lzw/lzw_compressor/include/decompressor.hpp
+ /home/max/vladoc/lzw/lzw_compressor/include/dict_train.hpp
  /home/max/vladoc/lzw/lzw_compressor/include/lzw.hpp
  /home/max/vladoc/lzw/lzw_compressor/include/utils.hpp
  /usr/include/alloca.h
