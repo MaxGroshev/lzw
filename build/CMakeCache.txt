@@ -20,15 +20,6 @@ Boost_DIR:PATH=/usr/lib/cmake/Boost-1.83.0
 //Path to a file.
 Boost_INCLUDE_DIR:PATH=/usr/include
 
-//Boost library directory DEBUG
-Boost_LIBRARY_DIR_DEBUG:PATH=/usr/lib
-
-//Boost library directory RELEASE
-Boost_LIBRARY_DIR_RELEASE:PATH=/usr/lib
-
-//Boost program_options library (debug)
-Boost_PROGRAM_OPTIONS_LIBRARY_DEBUG:FILEPATH=/usr/lib/libboost_program_options.so
-
 Boost_PROGRAM_OPTIONS_LIBRARY_RELEASE:STRING=/usr/lib/libboost_program_options.so.1.83.0
 
 //Path to a program.
@@ -266,10 +257,6 @@ my_lzw_SOURCE_DIR:STATIC=/home/max/vladoc/lzw
 
 //ADVANCED property for variable: Boost_DIR
 Boost_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_PROGRAM_OPTIONS_LIBRARY_DEBUG
-Boost_PROGRAM_OPTIONS_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_PROGRAM_OPTIONS_LIBRARY_RELEASE
-Boost_PROGRAM_OPTIONS_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
