@@ -77,7 +77,6 @@ def check_output_data(n_of_test, stdout_data, correct_res, test_case):
         return False
 
 
-
 def show_total_test_stat(n_of_test, passed_test, failed):
     print('===========TOTAL==============')
     print(TERMINAL_COLORS.OKBLUE                          + \
@@ -92,7 +91,6 @@ def show_total_test_stat(n_of_test, passed_test, failed):
                    failed_test, "\n"        +\
                    TERMINAL_COLORS.DEFAULT )
     print('==============================')
-
 
 
 # -----------------------------------------------------------------------------------------
@@ -155,7 +153,6 @@ if __name__ == "__main__":
     add_parse_arguments(parser)
     args = parser.parse_args()
 
-    # data_files_names = []
     get_files_names(data_files_names, args.input_dir)
 
     run_test_data(args)

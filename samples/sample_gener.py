@@ -19,11 +19,10 @@ def split_file(args):
 
         fout.close()
 
-
 # -----------------------------------------------------------------------------------------
 
 def add_parse_arguments(parser):
-    parser.add_argument("-nl",  "--n_of_lines_on_file", type = int, default = 500)
+    parser.add_argument("-nl",  "--n_of_lines_on_file", type = int, default = 100)
     parser.add_argument('-src',  "--source", type = str, default =
                     os.path.dirname(os.path.abspath(__file__)) + '/big_samples/big_lit.samp')
     parser.add_argument('-dest',  '--destination_dir',          type = str, default =

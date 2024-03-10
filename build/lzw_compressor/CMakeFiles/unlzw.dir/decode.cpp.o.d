@@ -196,7 +196,6 @@ lzw_compressor/CMakeFiles/unlzw.dir/decode.cpp.o: \
  /usr/include/c++/13.2.1/bits/hashtable_policy.h \
  /usr/include/c++/13.2.1/bits/node_handle.h \
  /usr/include/c++/13.2.1/bits/erase_if.h \
- /home/max/vladoc/lzw/lzw_compressor/include/decompressor.hpp \
  /home/max/vladoc/lzw/lzw_compressor/include/utils.hpp \
  /usr/include/c++/13.2.1/filesystem /usr/include/c++/13.2.1/bits/fs_fwd.h \
  /usr/include/c++/13.2.1/bits/fs_path.h /usr/include/c++/13.2.1/codecvt \
@@ -212,6 +211,7 @@ lzw_compressor/CMakeFiles/unlzw.dir/decode.cpp.o: \
  /usr/include/asm-generic/posix_types.h /usr/include/bits/statx-generic.h \
  /usr/include/bits/types/struct_statx_timestamp.h \
  /usr/include/bits/types/struct_statx.h \
+ /home/max/vladoc/lzw/lzw_compressor/include/decompressor.hpp \
  /home/max/vladoc/lzw/lzw_compressor/include/config.hpp \
  /usr/include/boost/program_options.hpp \
  /usr/include/boost/program_options/options_description.hpp \

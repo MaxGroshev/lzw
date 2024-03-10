@@ -59,10 +59,10 @@ std::string decompressor_t::decompress(const std::vector<int>& input_dat) {
 }
 
 void decompressor_t::write_res(std::string res, const char* path) const {
-    std::ofstream out;
-    out.open(path);
+    std::ofstream out(path, std::ios::binary);
 
-    out << res;
+    // for (auto& elem : res)
+    out.write(res.data(), res.size());
     out.close();
 }
 
@@ -70,7 +70,8 @@ std::vector<int> decompressor_t::get_data_from_bin(const char* path) const {
 
     std::ifstream data_file(path, std::ios::binary);
     if (!data_file.good()) {
-        throw std::runtime_error("Input file for decompression does not exist\n");
+        std::string msg = "Input file for decompression does not exist\n";
+        throw std::runtime_error(msg + path);
     }
     //tight_moment with bit operations
     size_t f_size = utils::get_file_size(path);

@@ -12,6 +12,7 @@ class set_up_t {
         std::string train_dir;
         std::string dict_dir;
         bool train_mode = false; //better in set_up as it is responsible way of running
+        bool dictionary_mode = false;
 
         boost::program_options::options_description set_option_description() {
             using namespace boost::program_options;
@@ -22,7 +23,7 @@ class set_up_t {
             "on samples from mentioned dir")
             ("keep,k",  value<std::string>(), "source_dir")
             ("force,f" , "will be added soon")
-            ("dict, d", value<std::string>()->default_value("../samples/tmp_samples/"), "dictionray_dir")
+            ("dict,D", value<std::string>(), "dictionray_dir")
             ("OUTPUT,o",value<std::string>(), "dest_dir");
 
             return desc;
@@ -48,21 +49,33 @@ class set_up_t {
             else
                 throw std::runtime_error("No source dir was mentioned\n");
             if (args.count("train")) {
+                std::cout << "I am here\n";
                 train_mode = true;
                 train_dir = std::move(args["train"].as<std::string>());
             }
-            if (args.count("dict"))
-                train_dir = std::move(args["dict"].as<std::string>());
+            if (args.count("dict")) {
+                dictionary_mode = true;
+                dict_dir = std::move(args["dict"].as<std::string>());
+            }
         }
+
+//-----------------------------------------------------------------------------------------
+
         bool is_train_mode() const {return train_mode;}
+        bool is_dict_mode()  const {return dictionary_mode;}
         void write_dictionary_to_file()    const;
         const std::string& get_src_dir()   const {return src_dir;};
         const std::string& get_train_dir() const {
-            if (train_mode) {
+            if (train_mode)
                 return train_dir;
-            }
             else
                 throw std::runtime_error("Request to train dir in train_mode=false\n");
+        };
+        const std::string& get_dict_dir() const {
+            if (dictionary_mode)
+                return dict_dir;
+            else
+                throw std::runtime_error("Request to dictionary dir in dict_mode=false\n");
         };
         const std::string& get_dest_dir() const {
             if (!dest_dir.empty()) {
@@ -70,4 +83,7 @@ class set_up_t {
             }
             return src_dir;
         };
+
+//-----------------------------------------------------------------------------------------
+
 };

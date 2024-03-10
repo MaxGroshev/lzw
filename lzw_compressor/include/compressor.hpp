@@ -2,6 +2,7 @@
 
 #include <unordered_map>
 #include <string>
+#include "utils.hpp"
 
 //-----------------------------------------------------------------------------------------
 
@@ -33,8 +34,6 @@ class compressor_t final {
 std::vector<int> compressor_t::compress(const std::string& input_dat) {
     std::vector<int> output;
 
-    // std::cout << "Size before: " << dictionary_.size() << std::endl;
-
     std::string fst_elem {};
     std::string snd_elem {};
     std::string concat   {};
@@ -43,13 +42,12 @@ std::vector<int> compressor_t::compress(const std::string& input_dat) {
     for (int i = 0; i < input_dat.size(); ++i) {
         if (i != input_dat.size())
             snd_elem += input_dat[i + 1];
-        // std::cout <  < snd_elem << '\n';
         concat = fst_elem + snd_elem;
-        if (dictionary_.contains(concat)) {
+        if (dictionary_.contains(concat) && input_dat[i + 1] != 0) {
+
             fst_elem = concat;
         }
         else {
-            // std::cout << "HERE: " << concat << std::endl;
             output.push_back(dictionary_[fst_elem]);
             dictionary_[concat] = code;
             ++code;
@@ -57,7 +55,7 @@ std::vector<int> compressor_t::compress(const std::string& input_dat) {
         }
         snd_elem = "";
     }
-    // std::cout << "Size after: " << dictionary_.size() << std::endl;
+
     return output;
 }
 
@@ -72,18 +70,18 @@ void compressor_t::write_res_in_bin(std::vector<int> res, const char* path) cons
 }
 
 std::string compressor_t::get_data(const char* path) const {
-    std::string data;
-    std::ifstream data_file;
-
-    data_file.open(path);
+    std::ifstream data_file(path, std::ios::binary);
     if (!data_file.good()) {
-        throw std::runtime_error("Input file for compression does not exist\n");
+        std::string msg = "Input file for compression does not exist\n";
+        throw std::runtime_error(msg + path);
     }
-    data_file.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-    std::stringstream data_stream;
-    data_stream << data_file.rdbuf();
+
+    ssize_t f_size = utils::get_file_size(path);
+    char* char_buf = new char[f_size];
+    data_file.read(char_buf, f_size);
+    std::string data(char_buf, char_buf + f_size);
+    delete [] char_buf;
     data_file.close();
-    data = data_stream.str();
     return data;
 }
 

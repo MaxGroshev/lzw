@@ -19,7 +19,6 @@ def get_files_names(files_names, dir_path):
 
 def run_compressor(args, compressors, data_files_names):
 
-
     print('————————————————————————START OF COMPRESSION———————————————————————')
 
 
@@ -31,8 +30,6 @@ def run_compressor(args, compressors, data_files_names):
         if (args.count_of_files == 1):
             source = args.source_dir + args.relative_path
             dest   = args.destination_dir + args.relative_path + extention
-            # print (source)
-            # print (dest)
             pipe = Popen([compressors[compressor], "-f", "-k", source, "-o" , dest], stdout = PIPE)
 
             stdout_data = pipe.communicate()
