@@ -210,7 +210,8 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: \
  /usr/include/asm/posix_types.h /usr/include/asm/posix_types_64.h \
  /usr/include/asm-generic/posix_types.h /usr/include/bits/statx-generic.h \
  /usr/include/bits/types/struct_statx_timestamp.h \
- /usr/include/bits/types/struct_statx.h \
+ /usr/include/bits/types/struct_statx.h /usr/include/c++/13.2.1/iterator \
+ /usr/include/c++/13.2.1/bits/stream_iterator.h \
  /home/max/vladoc/lzw/lzw_compressor/include/decompressor.hpp \
  /home/max/vladoc/lzw/lzw_compressor/include/config.hpp \
  /usr/include/boost/program_options.hpp \
@@ -390,8 +391,6 @@ lzw_compressor/CMakeFiles/lzw.dir/encode.cpp.o: \
  /usr/include/boost/lexical_cast.hpp \
  /usr/include/boost/range/iterator_range_core.hpp \
  /usr/include/boost/iterator/iterator_traits.hpp \
- /usr/include/c++/13.2.1/iterator \
- /usr/include/c++/13.2.1/bits/stream_iterator.h \
  /usr/include/boost/iterator/iterator_facade.hpp \
  /usr/include/boost/iterator/interoperable.hpp \
  /usr/include/boost/mpl/bool.hpp /usr/include/boost/mpl/bool_fwd.hpp \

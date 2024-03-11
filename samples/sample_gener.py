@@ -22,11 +22,11 @@ def split_file(args):
 # -----------------------------------------------------------------------------------------
 
 def add_parse_arguments(parser):
-    parser.add_argument("-nl",  "--n_of_lines_on_file", type = int, default = 100)
+    parser.add_argument("-nl",  "--n_of_lines_on_file", type = int, default = 50)
     parser.add_argument('-src',  "--source", type = str, default =
-                    os.path.dirname(os.path.abspath(__file__)) + '/big_samples/big_lit.samp')
+                    os.path.dirname(os.path.abspath(__file__)) + '/big_samples/big_src.samp')
     parser.add_argument('-dest',  '--destination_dir',          type = str, default =
-                    os.path.dirname(os.path.abspath(__file__)) + '/tmp_samples/')
+                    os.path.dirname(os.path.abspath(__file__)) + '/src_samples/')
 
 # -----------------------------------------------------------------------------------------
 

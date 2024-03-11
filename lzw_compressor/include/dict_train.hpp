@@ -23,25 +23,24 @@ class dict_train_t {
                                         utils::get_file_name_from_dir(train_dir.c_str());
 
             for (const auto& sample : samples) {
-                // std::cout << sample << '\n';
-                train_on_sample(sample.c_str());
+                std::string sample_dat = utils::read_from_file_into_string(sample.c_str()); //const char* ?
+                train_on_sample(sample_dat.begin(), sample_dat.end());
             }
 
             um_vector data = sort_dictionary();
             write_dictionary_to_file(data);
         };
 
-
-        void train_on_sample(const char* path) {
-            std::string sample_dat = utils::read_from_file_into_string(path); //const char* ?
+        template<typename it>
+        void train_on_sample(it start, it fin) {
 
             std::string fst_elem {};
             std::string snd_elem {};
             std::string concat   {};
-            fst_elem += sample_dat[0];
-            for (int i = 0; i < sample_dat.size(); ++i) {
-                if (i != sample_dat.size())
-                    snd_elem += sample_dat[i + 1];
+            fst_elem += *start;
+            for (auto i = start; i != fin; ++i) {
+                if (i != fin)
+                    snd_elem += *(i + 1);
                 concat = fst_elem + snd_elem;
 
                 auto um_elem = dictionary_.find(concat);
@@ -67,10 +66,6 @@ class dict_train_t {
 
         void write_dictionary_to_file(um_vector& data) const {
             std::ofstream out(config_.get_dest_dir().c_str(), std::ios::binary);
-
-            // for(const auto& elem : data) {
-            //     // std::cout << "[" << elem.first << "]: " << elem.second << std::endl;
-            // }
 
             for (int i = 0; i < std::min(int(data.size()), config_.get_maxdict()); i++) {
                 data[i].first += "\n";

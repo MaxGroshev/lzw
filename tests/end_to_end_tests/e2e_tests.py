@@ -140,7 +140,7 @@ def add_parse_arguments(parser):
     parser.add_argument("-n",  "--num_to_test", type = int, default = 1000)
     # parser.add_argument("-n",  "--num_to_test", type = int, default = 1000)
     parser.add_argument('-in',  "--input_dir",  type = str, default =
-                    os.path.dirname(os.path.abspath(__file__)) + '/my_input_dat/')
+                    os.path.dirname(os.path.abspath(__file__)) + '/my_input_dat/lit_dat/')
     parser.add_argument('-com', '--compressed_dir',          type = str, default =
                     os.path.dirname(os.path.abspath(__file__)) + '/my_compress_dat/')
     parser.add_argument('-decom', '--decompressed_dir',          type = str, default =

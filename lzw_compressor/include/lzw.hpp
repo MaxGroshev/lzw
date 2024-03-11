@@ -31,10 +31,11 @@ class lzw_t final {
 //COMPRESSOR_WRAPER------------------------------------------------------------------------
 
         std::vector<int> compress(const std::string& input_dat) {
-            return compressor.compress(input_dat);
+            return compressor.compress(input_dat.begin(), input_dat.end());
         };
         std::vector<int> compress() {
-            std::vector<int> res = compressor.compress(get_data_for_compress());
+            std::string input_dat = get_data_for_compress();
+            std::vector<int> res = compressor.compress(input_dat.begin(), input_dat.end());
             // utils::dump_vect(res);
             std::string write_dir = config_.get_dest_dir() + ".lzw"; //bad
             compressor.write_res_in_bin(res, write_dir.c_str());
@@ -44,10 +45,11 @@ class lzw_t final {
 //DECOMPRESSOR_WRAPER----------------------------------------------------------------------
 
         std::string decompress(const std::vector<int>& input_dat) {
-            return decompressor.decompress(input_dat);
+            return decompressor.decompress(input_dat.begin(), input_dat.end());
         };
         std::string decompress() {
-            std::string res = decompressor.decompress(get_data_for_decompress());
+            std::vector<int> input_dat = get_data_for_decompress();
+            std::string res = decompressor.decompress(input_dat.begin(), input_dat.end());
             std::string write_dir = config_.get_dest_dir() + ".decode";
             decompressor.write_res(res, write_dir.c_str());
             return res;

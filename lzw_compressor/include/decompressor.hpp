@@ -20,7 +20,8 @@ class decompressor_t final {
                 dictionary_[i] = std::string{char(i)};
             }
         }
-        inline std::string decompress(const std::vector<int>& input_dat);
+        template<typename it>
+        inline std::string decompress(it start, it fin);
         size_t get_dict_size() const {return dictionary_.size();};
         size_t get_init_size_of_dictionary() const {return init_size_of_dictionary_;};
         std::vector<int> get_data_from_bin(const char* path) const;
@@ -29,18 +30,19 @@ class decompressor_t final {
 
 //-----------------------------------------------------------------------------------------
 
-std::string decompressor_t::decompress(const std::vector<int>& input_dat) {
-    std::string output = "";
+template<typename it>
+std::string decompressor_t::decompress(it start, it end) {
+    std::string output {};
 
     int code = init_size_of_dictionary_ + 1;
-    int fst_elem_code = input_dat[0];
+    int fst_elem_code = *start;
 
     std::string fst_elem = dictionary_[fst_elem_code];
     output += fst_elem;
-    std::string snd_elem = "";
+    std::string snd_elem {};
     snd_elem = fst_elem;
-    for (int i = 0; i < input_dat.size() - 1; i++) {
-        int snd_elem_code = input_dat[i + 1];
+    for (auto i = start; i != (end - 1); ++i) {
+        int snd_elem_code = *(i + 1);
         if (!dictionary_.contains(snd_elem_code)) {
 			fst_elem = dictionary_[fst_elem_code] + snd_elem;
 		}

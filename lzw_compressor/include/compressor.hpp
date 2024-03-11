@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <string>
 #include "utils.hpp"
+#include <iterator>
 
 //-----------------------------------------------------------------------------------------
 
@@ -27,7 +28,8 @@ class compressor_t final {
                 dictionary_[dict[i]] = i;
             }
         }
-        inline std::vector<int> compress(const std::string& input_dat);
+        template<typename it>
+        inline std::vector<int> compress(it start, it fin);
         size_t get_dict_size() const {return dictionary_.size();};
         size_t get_init_size_of_dictionary() const {return init_size_of_dictionary_;};
 
@@ -39,19 +41,20 @@ class compressor_t final {
 
 //-----------------------------------------------------------------------------------------
 
-std::vector<int> compressor_t::compress(const std::string& input_dat) {
+template<typename it>
+std::vector<int> compressor_t::compress(it start, it fin) {
     std::vector<int> output;
 
     std::string fst_elem {};
     std::string snd_elem {};
     std::string concat   {};
-    fst_elem += input_dat[0];
+    fst_elem += *start;
     int code = dictionary_.size() + 1;
-    for (int i = 0; i < input_dat.size(); ++i) {
-        if (i != input_dat.size())
-            snd_elem += input_dat[i + 1];
+    for (auto i = start; i != fin; ++i) {
+        if (i != fin)
+            snd_elem += *(i + 1);
         concat = fst_elem + snd_elem;
-        if (dictionary_.contains(concat) && input_dat[i + 1] != 0) {
+        if (dictionary_.contains(concat)) {
             fst_elem = concat;
         }
         else {
@@ -93,21 +96,5 @@ std::vector<std::string> compressor_t::get_dict(const char* path) const {
 
     return data;
 }
-
-// std::string compressor_t::get_data(const char* path) const {
-//     std::string data;
-//     std::ifstream data_file;
-//
-//     data_file.open(path);
-//     if (!data_file.good()) {
-//         throw std::runtime_error("Input file for compression does not exist\n");
-//     }
-//     data_file.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-//     std::stringstream data_stream;
-//     data_stream << data_file.rdbuf();
-//     data_file.close();
-//     data = data_stream.str();
-//     return data;
-// }
 
 }
