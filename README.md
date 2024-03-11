@@ -93,7 +93,13 @@ Run this command from build directory
   <img width="800" height="500" src="./perf_comparison/pic/zstd_comp.png">
 </p>
 
+### We can see thar then bigger size of input then better compression of lzw compressor
+
+
 <h2 align="center">Classic literature files compression with dictionary</a></h2>
+
+<h3>In this point algorithm of creating dictionary was coded and I got these results after testing. Max dictionary size was equal to 100000 elems</h3>
+
 
 <p align="center">
   <img width="800" height="500" src="./perf_comparison/pic/comp_dict.png">
@@ -102,6 +108,8 @@ Run this command from build directory
 <p align="center">
   <img width="800" height="500" src="./perf_comparison/pic/zstd_dict_comp.png">
 </p>
+
+### Finally I represented previous data on one graph. For lzw and zstd we can that see results of compression with dictionary improved dramaticly on small data(less then 500Kbts).
 
 <p align="center">
   <img width="800" height="500" src="./perf_comparison/pic/total_comp.png">
@@ -113,12 +121,14 @@ Run this command from build directory
   <img width="800" height="500" src="./perf_comparison/pic/pdf_dict_comp.png">
 </p>
 
+### According to graph we can make a conclusion that zstd and lzw algorithms are bad for compressing of PDF files
+
 <h2 align="center">BIN files compression</a></h2>
 
 <p align="center">
   <img width="800" height="500" src="./perf_comparison/pic/bin_dict_comp.png">
 </p>
 
-
 # Conclusion:
 
+### Taking into consideration all mentioned above we can make a conclusion that lzw compression algorithm is good for compression of small data. Results of compression increase sharply if generated dictionary is added.
