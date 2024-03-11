@@ -108,12 +108,12 @@ def find_sha1(input_dat, decompressed):
 def run_test(args, input_dat):
     compr_file = input_dat.replace(args.input_dir, args.compressed_dir)
     pipe = Popen([progs_name_t.compressor, "-k", input_dat,
-              "-o" + compr_file], stdout = PIPE)
+              "-o" + compr_file + ".lzw"], stdout = PIPE)
     stdout_data = pipe.communicate()
     decompr_file = input_dat.replace(args.input_dir, args.decompressed_dir)
     # print ()
     pipe = Popen([progs_name_t.decompressor, "-k", compr_file + ".lzw",
-            "-o" +  decompr_file], stdout = PIPE)
+            "-o" +  decompr_file + ".decode"], stdout = PIPE)
     stdout_data = pipe.communicate()
     return find_sha1(input_dat, decompr_file + ".decode")
 
@@ -138,9 +138,8 @@ def run_test_data(args):
 
 def add_parse_arguments(parser):
     parser.add_argument("-n",  "--num_to_test", type = int, default = 1000)
-    # parser.add_argument("-n",  "--num_to_test", type = int, default = 1000)
     parser.add_argument('-in',  "--input_dir",  type = str, default =
-                    os.path.dirname(os.path.abspath(__file__)) + '/my_input_dat/lit_dat/')
+                    os.path.dirname(os.path.abspath(__file__)) + '/my_input_dat/bin_dat/')
     parser.add_argument('-com', '--compressed_dir',          type = str, default =
                     os.path.dirname(os.path.abspath(__file__)) + '/my_compress_dat/')
     parser.add_argument('-decom', '--decompressed_dir',          type = str, default =

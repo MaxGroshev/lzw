@@ -24,9 +24,9 @@ endif ()
 add_subdirectory(lzw_compressor/)
 add_subdirectory(debug_utils/)
 
-# if (TESTING_ENABLED)
-#     add_subdirectory(tests/)
-# endif()
+if (TESTING_ENABLED)
+    add_subdirectory(tests/)
+endif()
 
 # unset(TESTING_ENABLED CACHE)
 

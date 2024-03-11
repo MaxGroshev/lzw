@@ -18,7 +18,6 @@ void dump_vect(const std::vector<T>& vect) {
 }
 
 std::vector<std::string> get_file_name_from_dir(const char* dir_name) {
-    // std::cout << "Current path is " << fs::current_path() << '\n'; //better input param
     std::string path = std::string(fs::current_path()) + "/" + dir_name;
     std::vector<std::string> files {};
 

@@ -15,6 +15,8 @@ class set_up_t {
         int maxdict = 1000000;
         bool train_mode = false; //better in set_up as it is responsible way of running
         bool dictionary_mode = false;
+        bool decode_mode = false;
+
 
         boost::program_options::options_description set_option_description() {
             using namespace boost::program_options;
@@ -45,8 +47,6 @@ class set_up_t {
 
             if (args.count("help")) //TODO: remove here just for debug
                 std::cout << desc << '\n';
-            if (args.count("OUTPUT"))
-                dest_dir = std::move(args["OUTPUT"].as<std::string>());
             if (args.count("keep"))
                 src_dir = std::move(args["keep"].as<std::string>());
             else
@@ -54,7 +54,6 @@ class set_up_t {
             if (args.count("train")) {
                 if (!args.count("OUTPUT"))
                     throw std::runtime_error("Output file for dict is neccessery param");
-                std::cout << "I am here\n";
                 train_mode = true;
             }
             if (args.count("dict")) {
@@ -63,6 +62,20 @@ class set_up_t {
             }
             if (args.count("maxdict"))
                 maxdict = args["maxdict"].as<int>();
+            if (args.count("OUTPUT"))
+                dest_dir = std::move(args["OUTPUT"].as<std::string>());
+            else {
+                std::cout << "A Im her\n" << argv[0] << std::endl;
+                if (train_mode) {
+                    dest_dir = src_dir + ".dict";
+                }
+                else if (std::string str = std::string{argv[0]}; str.find("/unlzw") != str.npos) {
+                    dest_dir = src_dir + ".decode";
+                }
+                else {
+                    dest_dir = src_dir + ".lzw";
+                }
+            }
         }
 
 //-----------------------------------------------------------------------------------------
@@ -71,19 +84,17 @@ class set_up_t {
         bool is_dict_mode()  const {return dictionary_mode;}
         void write_dictionary_to_file()    const;
         int  get_maxdict() const {return maxdict;}
-        const std::string& get_src_dir()   const {return src_dir;};
-        const std::string& get_dict_dir() const {
+        const char* get_src_dir()   const {return src_dir.c_str();};
+        const char* get_dict_dir() const {
             if (dictionary_mode)
-                return dict_dir;
+                return dict_dir.c_str();
             else
                 throw std::runtime_error("Request to dictionary dir in dict_mode=false\n");
         };
-        const std::string& get_dest_dir() const {
-            if (!dest_dir.empty()) {
-                return dest_dir;
-            }
-            return src_dir;
+        const char* get_dest_dir() const {
+            return dest_dir.c_str();
         };
+
 
 //-----------------------------------------------------------------------------------------
 

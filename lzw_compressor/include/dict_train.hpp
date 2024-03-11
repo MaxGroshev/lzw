@@ -65,7 +65,7 @@ class dict_train_t {
         }
 
         void write_dictionary_to_file(um_vector& data) const {
-            std::ofstream out(config_.get_dest_dir().c_str(), std::ios::binary);
+            std::ofstream out(config_.get_dest_dir(), std::ios::binary);
 
             for (int i = 0; i < std::min(int(data.size()), config_.get_maxdict()); i++) {
                 data[i].first += "\n";

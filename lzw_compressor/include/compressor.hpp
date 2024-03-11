@@ -45,6 +45,9 @@ template<typename it>
 std::vector<int> compressor_t::compress(it start, it fin) {
     std::vector<int> output;
 
+    if (start == fin)
+        return output;
+
     std::string fst_elem {};
     std::string snd_elem {};
     std::string concat   {};
@@ -54,7 +57,7 @@ std::vector<int> compressor_t::compress(it start, it fin) {
         if (i != fin)
             snd_elem += *(i + 1);
         concat = fst_elem + snd_elem;
-        if (dictionary_.contains(concat)) {
+        if (dictionary_.contains(concat) && *i != 0) {
             fst_elem = concat;
         }
         else {
@@ -88,7 +91,7 @@ std::vector<std::string> compressor_t::get_dict(const char* path) const {
     }
 
     std::vector<std::string> data;
-    std::string tmp_str = {}; //stream_iterator better
+    std::string tmp_str = {};
     while (std::getline(dict_file, tmp_str)) {
         data.push_back(std::move(tmp_str));
     }

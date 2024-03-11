@@ -24,15 +24,18 @@ class decompressor_t final {
         inline std::string decompress(it start, it fin);
         size_t get_dict_size() const {return dictionary_.size();};
         size_t get_init_size_of_dictionary() const {return init_size_of_dictionary_;};
-        std::vector<int> get_data_from_bin(const char* path) const;
+        std::vector<int> get_data(const char* path) const;
         inline void write_res(std::string res, const char* path) const;
 };
 
 //-----------------------------------------------------------------------------------------
 
 template<typename it>
-std::string decompressor_t::decompress(it start, it end) {
+std::string decompressor_t::decompress(it start, it fin) {
     std::string output {};
+
+    if (start == fin)
+        return output;
 
     int code = init_size_of_dictionary_ + 1;
     int fst_elem_code = *start;
@@ -41,7 +44,7 @@ std::string decompressor_t::decompress(it start, it end) {
     output += fst_elem;
     std::string snd_elem {};
     snd_elem = fst_elem;
-    for (auto i = start; i != (end - 1); ++i) {
+    for (auto i = start; i != (fin - 1); ++i) {
         int snd_elem_code = *(i + 1);
         if (!dictionary_.contains(snd_elem_code)) {
 			fst_elem = dictionary_[fst_elem_code] + snd_elem;
@@ -63,18 +66,18 @@ std::string decompressor_t::decompress(it start, it end) {
 void decompressor_t::write_res(std::string res, const char* path) const {
     std::ofstream out(path, std::ios::binary);
 
-    out.write(res.data(), res.size());
+    out << res;
     out.close();
 }
 
-std::vector<int> decompressor_t::get_data_from_bin(const char* path) const {
+std::vector<int> decompressor_t::get_data(const char* path) const {
 
     std::ifstream data_file(path, std::ios::binary);
     if (!data_file.good()) {
         std::string msg = "Input file for decompression does not exist\n";
         throw std::runtime_error(msg + path);
     }
-    //tight_moment with bit operations
+
     size_t f_size = utils::get_file_size(path);
     char* char_buf = new char[f_size];
     data_file.read(char_buf, f_size);

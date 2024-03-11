@@ -24,7 +24,7 @@ class lzw_t final {
 
         lzw_t(set_up_t config) :
             config_(config),
-            compressor(config.get_dict_dir().c_str()),
+            compressor(config.get_dict_dir()),
             decompressor(0) {}
 
 
@@ -36,8 +36,7 @@ class lzw_t final {
         std::vector<int> compress() {
             std::string input_dat = get_data_for_compress();
             std::vector<int> res = compressor.compress(input_dat.begin(), input_dat.end());
-            // utils::dump_vect(res);
-            std::string write_dir = config_.get_dest_dir() + ".lzw"; //bad
+            std::string write_dir = config_.get_dest_dir();
             compressor.write_res_in_bin(res, write_dir.c_str());
             return res;
         };
@@ -49,9 +48,9 @@ class lzw_t final {
         };
         std::string decompress() {
             std::vector<int> input_dat = get_data_for_decompress();
+            utils::dump_vect(input_dat);
             std::string res = decompressor.decompress(input_dat.begin(), input_dat.end());
-            std::string write_dir = config_.get_dest_dir() + ".decode";
-            decompressor.write_res(res, write_dir.c_str());
+            decompressor.write_res(res, config_.get_dest_dir());
             return res;
         };
 
@@ -63,14 +62,15 @@ class lzw_t final {
         bool   is_dict_mode()               const {return config_.is_dict_mode();};
 
         std::string get_data_for_compress() const {
-            return utils::read_from_file_into_string(config_.get_src_dir().c_str());
+            return utils::read_from_file_into_string(config_.get_src_dir());
         };
         std::vector<int> get_data_for_decompress() const {
-            return decompressor.get_data_from_bin(config_.get_src_dir().c_str());
+            return decompressor.get_data(config_.get_src_dir());
         };
         void compress_show_res() const {
-            size_t comp_size =  utils::get_file_size((config_.get_dest_dir() + ".lzw").c_str());
-            size_t input_size =  utils::get_file_size(config_.get_src_dir().c_str());
+            size_t comp_size =  utils::get_file_size(config_.get_dest_dir());
+            size_t input_size =  utils::get_file_size(config_.get_src_dir());
+            std::clog << "File compressed into: "<< config_.get_dest_dir() << std::endl;
             std::clog << input_size / 1024 << " Kbts" <<
                         " ==> " << comp_size / 1024 << " Kbts" << "\n";
             std::clog << "Compression factor: " << double(comp_size * 100) /
